@@ -143,7 +143,6 @@ public class Login extends JFrame {
 
                     case 1: // Ver proveedores
                         mostrarMensaje(listaProveedores);
-                        System.out.println(inventario.getProductosFarmacia());
                         break;
 
                     case 2: // Ver productos
