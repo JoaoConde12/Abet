@@ -12,45 +12,44 @@ public class Producto {
 
     // Métodos
 
+    // Método para obtener los productos del inventario de la farmacia
     public List<String> getProductosFarmacia() {
         return this.productosFarmacia;
     }
 
+    // Método para obtener los precios de los productos del inventario de la farmacia
     public List<Double> getPreciosProductos() {
         return this.preciosProductos;
     }
 
+    // Método para obtener la cantidad de los productos del inventario de la farmacia
     public List<Integer> getCantidadProductos() {
         return this.cantidadProductos;
     }
 
-    // Método para saber la cantidad de productos
+    // Método para saber el tamaño de la lista de productos
     public int getTamanyoListaProductos() {
         return this.productosFarmacia.size();
     }
 
     // Método para mostrar productos
     public String getProductos(int opcion) {
+
         StringBuilder mensaje = new StringBuilder();
 
         for (int i = 0; i < this.productosFarmacia.size(); i++) {
-            mensaje.append(i + 1).append(". ").append(this.productosFarmacia.get(i))
-                    .append(" -- Precio: $").append(this.preciosProductos.get(i))
-                    .append(" -- Cantidad: ").append(this.cantidadProductos.get(i));
+
+            mensaje.append(i + 1).append(". ").append(this.productosFarmacia.get(i)).append(" -- Precio: $").append(this.preciosProductos.get(i)).append(" -- Cantidad: ").append(this.cantidadProductos.get(i));
 
             if (opcion == 1 && i == this.productosFarmacia.size() - 1) {
+
                 mensaje.append("\n\nInserta el número del producto que deseas comprar:");
+
             } else if (i < this.productosFarmacia.size() - 1) {
+
                 mensaje.append("\n\n");
             }
-
-            // if (opcion == 1) {
-            //     mensaje.append("Inserta el número del producto que deseas comprar:");
-            // } else {
-            //     mensaje.append("\n\n");
-            // }
         }
-
         return mensaje.toString();
     }
 
@@ -91,28 +90,9 @@ public class Producto {
                 } else {
 
                     return "No hay productos";
-
                 }
             }
         }
-
         return "Error desconocido";
-    }
-
-    // Método para añadir un nuevo producto
-    public void agregarNuevoProducto(String nombre, double precio, int cantidad) {
-        productosFarmacia.add(nombre);
-        preciosProductos.add(precio);
-        cantidadProductos.add(cantidad);
-    }
-
-    // Método para añadir un nuevo precio
-    public void agregarNuevoPrecio(double precio) {
-        preciosProductos.add(precio);
-    }
-
-    // Método para añadir una cantidad
-    public void agregarNuevaCantidad(int cantidad) {
-        cantidadProductos.add(cantidad);
     }
 }

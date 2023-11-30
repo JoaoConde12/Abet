@@ -41,6 +41,4 @@ public class Admin {
         this.esAdmin = false;
         return this.esAdmin;
     }
-
-    // Método para
 }

@@ -14,7 +14,6 @@ public class Proveedor {
             List.of("Diciclomina", "Flavoxato", "Ipratropio", "Oxibutinina"));
     private List<String> productosUmbrella = new ArrayList<>(
             List.of("Aspirina", "Diclofenaco", "Ibuprofeno", "Flurbiprofeno"));
-    // private Producto inventario = new Producto();
 
     // Métodos
 
@@ -35,31 +34,36 @@ public class Proveedor {
         return mensaje.toString();
     }
 
+    // Método para obtener proveedores en forma de List
     public List<String> getNombreProveedores() {
         return nombreProveedores;
     }
 
+    // Método para obtener el tipo de Farmacos de los Proveedores
     public List<String> getTipoDeFarmacos() {
         return tipoDeFarmacos;
     }
 
+    // Método para obtener los productos de MultiPharms
     public List<String> getProductosMultiPharms() {
         return productosMultiPharms;
     }
 
+    // Método para obtener los productos de DrugsWorld
     public List<String> getProductosDrugsWorld() {
         return productosDrugsWorld;
     }
 
+    // Método para obtener los productos de Umbrella
     public List<String> getProductosUmbrella() {
         return productosUmbrella;
     }
 
+    // Método para elegir al proveedor
     public int elegirProveedor() {
         int i = 1;
 
-        StringBuilder msj = new StringBuilder(
-                "Sistema de Proveedores\nEscoja al proveedor (coloque el numero asignado):\n");
+        StringBuilder msj = new StringBuilder("Sistema de Proveedores\nEscoja al proveedor (coloque el numero asignado):\n");
 
         try {
             for (String nombres : getNombreProveedores()) {
@@ -81,6 +85,7 @@ public class Proveedor {
         }
     }
 
+    // Método para escoger los productos del proveedor seleccionado
     public int escogerProductos(List<String> farmacos, int opcs) {
         int i = 1;
 
@@ -106,23 +111,21 @@ public class Proveedor {
         }
     }
 
+    // Método para solicitar del productos que se escogió
     public String solicitud(int opc) {
         List<String> farmacos;
 
         switch (opc) {
             case 1:
                 farmacos = getProductosMultiPharms();
-
                 break;
 
             case 2:
                 farmacos = getProductosDrugsWorld();
-
                 break;
 
             case 3:
                 farmacos = getProductosUmbrella();
-
                 break;
 
             default:
@@ -133,8 +136,7 @@ public class Proveedor {
             int opcionProducto = escogerProductos(farmacos, opc - 1);
 
             if (opcionProducto >= 1 && opcionProducto <= farmacos.size()) {
-                String msj = "Su solicitud de un paquete del producto '" + farmacos.get(opcionProducto - 1)
-                        + "', fue realizada con éxito.\n\nDebe esperar 24 horas para que sea procesada y aprobada";
+                String msj = "Su solicitud de un paquete del producto '" + farmacos.get(opcionProducto - 1) + "', fue realizada con éxito.\n\nDebe esperar 24 horas para que sea procesada y aprobada";
                 JOptionPane.showMessageDialog(null, msj);
                 return farmacos.get(opcionProducto - 1);
 
@@ -147,9 +149,9 @@ public class Proveedor {
         }
     }
 
+    // Ejecuta todo el código
     public void proovedores() {
         int opc = elegirProveedor();
         solicitud(opc);
     }
-
 }

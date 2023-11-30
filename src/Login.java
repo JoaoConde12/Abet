@@ -16,11 +16,6 @@ public class Login extends JFrame {
     private Producto inventario = new Producto();
     private Proveedor proveedor = new Proveedor();
 
-    /*
-     * ---------------------------------------------------------------------------
-     * -----------------------------------------------------------------------------
-     */
-
     // Métodos
 
     // Constructor de la clase LoginMain
@@ -49,8 +44,7 @@ public class Login extends JFrame {
         botonIngresar = new JButton("Ingresar");
 
         // Configuración del diseño de la ventana
-        setLayout(null); // Desactiva el diseño predeterminado para posicionar manualmente los
-                         // componentes
+        setLayout(null); // Desactiva el diseño predeterminado para posicionar manualmente los componentes
 
         // Posicionamiento y tamaño de los componentes en la ventana
         labelUsuario.setBounds(10, 20, 100, 20); // (x, y, ancho, alto)
@@ -90,19 +84,22 @@ public class Login extends JFrame {
     private int pedirInformacion(String mensaje, int limite) {
 
         int opcion = 0;
-
         String opcionStr = JOptionPane.showInputDialog(this, mensaje);
 
+        // Se convierte la opción del usuario en un int
         try {
+
             opcion = Integer.parseInt(opcionStr);
 
+            // Se verifica que la opción insertada esté dentro del rango esperado
             if (opcion > 0 && opcion <= limite) {
                 return opcion;
             } else {
                 JOptionPane.showMessageDialog(null, "Error, fuera de rango");
                 return pedirInformacion(mensaje, limite);
             }
-
+        
+        // Ejecución en caso de que no se inserte un int
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error, debes ingresar un número entero");
             return pedirInformacion(mensaje, limite);
@@ -134,21 +131,18 @@ public class Login extends JFrame {
             // Bucle de las opciones del programa
             do {
 
+                // Varaibles del programa cuando lo ejecuta un admin
                 String listaProductos;
                 String listaProveedores = proveedor.getProveedores();
 
-                // Se pide la opción al usuario y luego se la pasa al método de obtener
-                // productos
-                opcionUsuario = pedirInformacion(
-                        "Seleccione una opción:\n\n    1. Ver Proveedores\n    2. Ver Inventario\n    3. Comprar a un proveedor\n    4. Salir",
-                        4);
+                // Se pide la opción al usuario y luego se la pasa al método de obtener productos
+                opcionUsuario = pedirInformacion("Seleccione una opción:\n\n    1. Ver Proveedores\n    2. Ver Inventario\n    3. Comprar a un proveedor\n    4. Salir", 4);
                 listaProductos = inventario.getProductos(opcionUsuario);
 
                 switch (opcionUsuario) {
 
-                    case 1:
+                    case 1: // Ver proveedores
                         mostrarMensaje(listaProveedores);
-                        ;
                         System.out.println(inventario.getProductosFarmacia());
                         break;
 
@@ -156,13 +150,11 @@ public class Login extends JFrame {
                         mostrarMensaje(listaProductos);
                         break;
 
-                    case 3:
+                    case 3: // Realizar compras a proveedores
                         proveedor.proovedores();
                         break;
                 }
-
             } while (opcionUsuario != 4);
-
         }
 
         // Valida si es los datos ingresados en el login, son de un Cliente
@@ -180,9 +172,7 @@ public class Login extends JFrame {
 
                 // Se pide la opción al usuario y luego se la pasa al método de obtener
                 // productos
-                opcionUsuario = pedirInformacion(
-                        "Seleccione una opción:\n\n    1. Comprar Productos\n    2. Ver productos\n    3. Hacer una sugerencia\n    4. Salir",
-                        4);
+                opcionUsuario = pedirInformacion("Seleccione una opción:\n\n    1. Comprar Productos\n    2. Ver productos\n    3. Hacer una sugerencia\n    4. Salir", 4);
                 listaProductos = inventario.getProductos(opcionUsuario);
 
                 switch (opcionUsuario) {
@@ -199,20 +189,15 @@ public class Login extends JFrame {
 
                     case 3: // Hacer sugerencias
                         sugerenciaUsuario = JOptionPane.showInputDialog(null, "Haz tu sugerencia:");
-                        mostrarMensaje(
-                                "Tu sugerencia:\n\n\"" + sugerenciaUsuario + "\"\n\nHa sido enviada correctamente");
+                        mostrarMensaje("Tu sugerencia:\n\n\"" + sugerenciaUsuario + "\"\n\nHa sido enviada correctamente");
                         break;
                 }
                 // Salir del programa
             } while (opcionUsuario != 4);
-
         }
         // Valida si es los datos ingresados en el login, no son de nadie
         else {
-
             mostrarMensaje("SOLO LIGA!!!!");
-
         }
-
     }
 }
